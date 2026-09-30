@@ -1,0 +1,173 @@
+a daj tam aj nejake zavazie a cinky proste ako vo fitku
+Hotovo — obchod je teraz plnohodnotné domáce fitko, 13 produktov (gumy/app.js):
+
+Nové produkty:
+
+Jednoručka HEX 10 kg — 34,90 €
+Nastaviteľné jednoručky 2×24 kg — 149 € (pôvodne 189 €)
+Kettlebell 16 kg — 44,90 € a 24 kg — 59,90 €
+Bumper kotúč 20 kg — 54,90 € a olympijská osa 20 kg — 119 €
+SET DOMÁCE FITKO (jednoručky + kettlebell) — 199 € s −22 %
+Ostatné zmeny:
+
+filtre prerobené na Gumy / Činky / Kettlebelly / Kotúče a osy / Sety
+každý typ má vlastnú SVG ilustráciu (činka, kettlebell, kotúč, osa)
+nová recenzia na činky + FAQ ako vybrať váhu činiek
+Overené: všetky filtre, sety aj ikony sedia, JS v poriadku. Obnov gumy/index.html. Chceš ešte pridať lavičku, hrazdu alebo proteíny?
+
+ale posli to vsetko aj fotky
+Rate limit exceeded. Please try again later.
+prosim
+Rate limit exceeded. Please try again later.
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GumaFit — Odporové gumy na cvičenie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="#hero">GUMA<span>FIT</span></a>
+  <nav class="nav">
+    <a href="#produkty">Produkty</a>
+    <a href="#navod">Návod na zhyby</a>
+    <a href="#tabulka">Tabuľka odporov</a>
+    <a href="#recenzie">Recenzie</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <button id="cartBtn" class="cart-btn">🛒 Košík <span id="cartCount">0</span></button>
+</header>
+
+<section id="hero">
+  <div class="hero-text reveal">
+    <p class="kicker">GUMY • ČINKY • KETTLEBELL • DOMÁCE FITKO</p>
+    <h1>Prvý zhyb je bližšie, než si myslíš</h1>
+    <p class="sub">Odporové gumy ti uberú časť váhy, takže zhyb zvládneš už dnes — a silu si buduješ každým tréningom. Vhodné pre začiatočníkov aj pokročilých, doma aj v gyme.</p>
+    <div class="hero-btns">
+      <a href="#produkty" class="btn primary">Vybrať gumu</a>
+      <a href="#navod" class="btn ghost">Ako na zhyb s gumou</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong data-count="12">0</strong><span>tisíc spokojných zákazníkov</span></div>
+      <div class="stat"><strong data-count="5">0</strong><span>rôznych odporov na výber</span></div>
+      <div class="stat"><strong data-count="2">0</strong><span>ročná záruka na každú gumu</span></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    <svg viewBox="0 0 340 420" class="band-svg" aria-label="Odporová guma">
+      <ellipse cx="170" cy="210" rx="95" ry="165" fill="none" stroke="#22c55e" stroke-width="34"/>
+      <ellipse cx="170" cy="210" rx="95" ry="165" fill="none" stroke="#16a34a" stroke-width="34" stroke-dasharray="40 30" opacity=".55"/>
+      <rect x="120" y="30" width="100" height="34" rx="10" fill="#111" />
+      <text x="170" y="53" text-anchor="middle" fill="#4ade80" font-size="17" font-weight="bold" font-family="Arial">45 kg</text>
+    </svg>
+    <div class="float-tag t1">2–45 kg odpor</div>
+    <div class="float-tag t2">100% latex</div>
+    <div class="float-tag t3">nosnosť 150 kg</div>
+  </div>
+</section>
+
+<section id="vyhody">
+  <h2 class="title reveal">Prečo cvičiť s gumami?</h2>
+  <div class="grid4">
+    <div class="card reveal"><div class="ico">💪</div><h3>Pomoc pri zhyboch</h3><p>Guma ťa nadľahčí o 2–45 kg. Zhyb zvládne aj úplný začiatočník.</p></div>
+    <div class="card reveal"><div class="ico">🏠</div><h3>Cvičenie kdekoľvek</h3><p>Váži pár gramov, zmestí sa do batoha. Domov, park aj dovolenka.</p></div>
+    <div class="card reveal"><div class="ico">🦵</div><h3>Celé telo</h3><p>Zhyby, drepy, tlaky, mŕtve ťahy, ramená aj rehabilitácia.</p></div>
+    <div class="card reveal"><div class="ico">🛡️</div><h3>Šetrné ku kĺbom</h3><p>Odpor rastie plynulo, bez rázov. Ideálne aj po zranení.</p></div>
+  </div>
+</section>
+
+<section id="produkty">
+  <h2 class="title reveal">Vyber si výbavu do domáceho fitka</h2>
+  <p class="center muted reveal">Gumy na zhyby, jednoručky, kettlebelly aj olympijské kotúče — všetko na jednom mieste.</p>
+  <div class="filters reveal" id="filters">
+    <button class="fbtn active" data-f="all">Všetky</button>
+    <button class="fbtn" data-f="guma">Gumy</button>
+    <button class="fbtn" data-f="cinka">Činky</button>
+    <button class="fbtn" data-f="kettlebell">Kettlebelly</button>
+    <button class="fbtn" data-f="kotuc">Kotúče a osy</button>
+    <button class="fbtn" data-f="set">Sety</button>
+  </div>
+  <div class="grid3" id="productGrid"></div>
+  <div class="set-box reveal">
+    <div><h3>🔥 SET VŠETKÝCH 5 GÚM <span class="save">−20 %</span></h3><p>Kompletná sada 2–45 kg + taška + e-book „Prvý zhyb za 30 dní“ zadarmo.</p></div>
+    <div class="set-buy"><strong>49,90 €</strong><s>62,50 €</s><button class="btn primary" data-add="set">Pridať set do košíka</button></div>
+  </div>
+  <div class="set-box reveal">
+    <div><h3>🏋️ SET DOMÁCE FITKO <span class="save">−22 %</span></h3><p>Nastaviteľné jednoručky 2×24 kg + kettlebell 16 kg + e-book silových tréningov zadarmo.</p></div>
+    <div class="set-buy"><strong>199,00 €</strong><s>253,80 €</s><button class="btn primary" data-add="gymset">Pridať set do košíka</button></div>
+  </div>
+</section>
+
+<section id="navod">
+  <h2 class="title reveal">Ako na zhyb s gumou — 4 kroky</h2>
+  <div class="steps">
+    <div class="step reveal"><span>1</span><h3>Zaveste gumu</h3><p>Gumu prehoďte cez hrazdu a prevlečte jeden koniec cez druhý. Musí držať pevne.</p></div>
+    <div class="step reveal"><span>2</span><h3>Stúpte do nej</h3><p>Jedno koleno (začiatočník) alebo chodidlo (pokročilý) vložte do slučky gumy.</p></div>
+    <div class="step reveal"><span>3</span><h3>Zhyb s pomocou</h3><p>Chyťte hrazdu nadhmatom a pritiahnite bradu nad tyč. Guma vás nadľahčí.</p></div>
+    <div class="step reveal"><span>4</span><h3>Zoslabujte gumu</h3><p>Keď dáte 3×8 opakovaní, vezmite slabšiu gumu. Cieľ: zhyb bez gumy.</p></div>
+  </div>
+</section>
+
+<section id="tabulka">
+  <h2 class="title reveal">Tabuľka odporov</h2>
+  <div class="table-wrap reveal">
+  <table>
+    <tr><th>Farba</th><th>Odpor</th><th>Pre koho</th><th>Najlepšie na</th></tr>
+    <tr><td><span class="dot" style="background:#facc15"></span> Žltá</td><td>2–7 kg</td><td>Rehabilitácia, seniori</td><td>Rozcvička, ramená</td></tr>
+    <tr><td><span class="dot" style="background:#f97316"></span> Oranžová</td><td>7–16 kg</td><td>Začiatočníci</td><td>Prvé zhyby, mobilita</td></tr>
+    <tr><td><span class="dot" style="background:#ef4444"></span> Červená</td><td>11–23 kg</td><td>Mierne pokročilí</td><td>Zhyby, kliky, drepy</td></tr>
+    <tr><td><span class="dot" style="background:#22c55e"></span> Zelená</td><td>16–32 kg</td><td>Pokročilí</td><td>Zhyby s väčšou váhou tela</td></tr>
+    <tr><td><span class="dot" style="background:#3b82f6"></span> Modrá</td><td>23–45 kg</td><td>Ťažkí / siloví</td><td>Maximálna pomoc, leg press</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="recenzie">
+  <h2 class="title reveal">Čo hovoria zákazníci</h2>
+  <div class="grid3" id="reviews"></div>
+</section>
+
+<section id="faq">
+  <h2 class="title reveal">Časté otázky</h2>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
+<section id="objednavka">
+  <h2 class="title reveal">Doprava a záruka</h2>
+  <div class="grid4">
+    <div class="card reveal"><div class="ico">🚚</div><h3>Doprava 2–3 dni</h3><p>Poštovné 3,90 €, pri objednávke nad 40 € zadarmo.</p></div>
+    <div class="card reveal"><div class="ico">↩️</div><h3>30 dní na vrátenie</h3><p>Nesadne ti odpor? Vymeníme alebo vrátime peniaze.</p></div>
+    <div class="card reveal"><div class="ico">🛡️</div><h3>Záruka 2 roky</h3><p>Prasknutú gumu pri bežnom cvičení vymeníme za novú.</p></div>
+    <div class="card reveal"><div class="ico">📖</div><h3>E-book zadarmo</h3><p>Ku každej objednávke tréningový plán „Prvý zhyb za 30 dní“.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p><b>GUMAFIT</b> — odporové gumy na cvičenie • info@gumafit.sk • +421 900 123 456</p>
+  <p class="muted">Demo e-shop. Ceny sú ilustračné.</p>
+</footer>
+
+<aside id="cartDrawer">
+  <div class="cart-head"><h3>🛒 Tvoj košík</h3><button id="cartClose">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="row"><span>Medzisúčet</span><strong id="cartTotal">0,00 €</strong></div>
+    <div class="row muted"><span>Poštovné</span><span id="shipCost">3,90 €</span></div>
+    <form id="orderForm">
+      <input id="fName" placeholder="Meno a priezvisko *" required>
+      <input id="fMail" type="email" placeholder="E-mail *" required>
+      <input id="fAddr" placeholder="Adresa doručenia *" required>
+      <button class="btn primary big" type="submit">Odoslať objednávku</button>
+    </form>
+    <p id="orderMsg"></p>
+  </div>
+</aside>
+<div id="overlay"></div>
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
