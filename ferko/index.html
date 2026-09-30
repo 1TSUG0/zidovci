@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CATO Pizzeria Michalovce | Pravá talianska pizza v srdci Zemplína</title>
+<meta name="description" content="CATO Pizzeria Michalovce — pizza z pece na drevo, cestoviny, burgre a rodinná atmosféra. Pozrite si menu, galériu a otváracie hodiny.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#c1272d; --red-dark:#8f1c21;
+  --green:#1e6b3a; --cream:#fdf8ef; --dark:#1a1210;
+  --gold:#e2a63d; --muted:#8a7f78;
+  --card:#fffdf7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;transition:.35s;background:transparent}
+nav.scrolled{background:rgba(26,18,16,.92);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.25);padding:10px 32px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand-logo{width:46px;height:46px;border-radius:50%;background:conic-gradient(from 20deg,var(--red),var(--gold),var(--green),var(--red));display:grid;place-items:center;font-family:'Playfair Display',serif;font-weight:800;font-size:22px;color:#fff;border:2px solid #fff;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.brand b{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.08em}
+.brand small{display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.35em;color:var(--gold);font-weight:600}
+.nav-links{display:flex;gap:28px;color:#fff;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.nav-links a{opacity:.85;transition:.25s}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:100px;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;transition:.3s}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 12px 30px rgba(193,39,45,.4)}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+.btn-outline{border:2px solid rgba(255,255,255,.4);color:#fff}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-dark{background:var(--dark);color:#fff}
+@media(max-width:900px){.nav-links{display:none}nav{padding:12px 18px}}
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;color:#fff;padding:130px 32px 60px;overflow:hidden;background:#111}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,6,5,.88) 0%,rgba(10,6,5,.55) 50%,rgba(10,6,5,.25) 100%),linear-gradient(0deg,rgba(10,6,5,.7),transparent 60%)}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero{padding:120px 20px 40px}}
+.badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);padding:9px 18px;border-radius:100px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.badge i{width:8px;height:8px;background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.02;margin:20px 0 16px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{color:#e8ddd4;font-size:17px;line-height:1.7;max-width:520px;font-weight:300}
+.hero p strong{color:#fff}
+.hero-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap}
+.hero-stats div b{font-family:'Playfair Display',serif;font-size:28px;display:block}
+.hero-stats div span{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#cbb9a8}
+.hero-card{background:rgba(255,253,247,.97);color:var(--dark);border-radius:24px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:rotate(2deg)}
+.hero-card img{border-radius:16px;height:320px;width:100%;object-fit:cover}
+.hero-card-body{display:flex;justify-content:space-between;align-items:center;padding:16px 8px 6px}
+.hero-card-body b{font-family:'Playfair Display',serif;font-size:20px}
+.price-tag{background:var(--red);color:#fff;font-weight:800;padding:8px 16px;border-radius:100px;font-size:16px}
+.marquee{background:var(--dark);color:#f5e6c8;overflow:hidden;white-space:nowrap;padding:14px 0;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);font-family:'Playfair Display',serif;font-size:16px;letter-spacing:.15em;text-transform:uppercase}
+.marquee-track{display:inline-flex;animation:mar 24s linear infinite}
+.marquee-track span{padding:0 26px}
+@keyframes mar{to{transform:translateX(-50%)}}
+section{padding:90px 32px}
+.wrap{max-width:1200px;margin:0 auto}
+@media(max-width:900px){section{padding:60px 20px}}
+.kicker{font-size:12px;letter-spacing:.35em;text-transform:uppercase;color:var(--red);font-weight:700;display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.kicker::before{content:"";width:36px;height:3px;background:var(--red);border-radius:10px}
+h2{font-size:clamp(30px,4vw,50px);line-height:1.1}
+h2 em{font-style:italic;color:var(--red)}
+.lead{color:var(--muted);margin-top:14px;line-height:1.8;max-width:640px;font-size:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+@media(max-width:900px){.grid2{grid-template-columns:1fr;gap:28px}}
+.about-img{position:relative}
+.about-img img.main{border-radius:24px;height:480px;width:100%;object-fit:cover;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.about-img img.small{position:absolute;bottom:-30px;left:-30px;width:220px;height:220px;object-fit:cover;border-radius:20px;border:6px solid var(--cream);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+@media(max-width:900px){.about-img img.small{left:10px}}
+.feat3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+@media(max-width:800px){.feat3{grid-template-columns:1fr}}
+.feat{background:var(--card);border:1px solid #eee0cb;border-radius:18px;padding:26px 22px}
+.feat span{font-size:30px}
+.feat h4{font-family:'Playfair Display',serif;font-size:19px;margin:10px 0 8px}
+.feat p{font-size:14px;color:var(--muted);line-height:1.7}
+.menu-sec{background:var(--dark);color:#f7efe2;border-radius:32px;margin:0 16px}
+.menu-tabs{display:flex;gap:10px;margin:30px 0;flex-wrap:wrap}
+.tab{padding:11px 22px;border-radius:100px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#f7efe2;font-weight:600;font-size:14px;cursor:pointer;transition:.25s}
+.tab.active,.tab:hover{background:var(--gold);border-color:var(--gold);color:#1a1210}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.menu-grid{grid-template-columns:1fr}}
+.dish{display:flex;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:14px;align-items:center;transition:.3s}
+.dish:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+.dish img{width:86px;height:86px;border-radius:14px;object-fit:cover;flex-shrink:0}
+.dish-info{flex:1}
+.dish-info h5{font-family:'Playfair Display',serif;font-size:17px;display:flex;justify-content:space-between;gap:10px}
+.dish-info h5 b{color:var(--gold);white-space:nowrap}
+.dish-info p{font-size:13px;color:#cbb9a8;margin-top:4px;line-height:1.5}
+.dish-info small{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#8a7f78}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px;margin-top:36px}
+.gal div{border-radius:18px;overflow:hidden;position:relative}
+.gal div:first-child{grid-column:span 2;grid-row:span 2}
+.gal img{width:100%;height:100%;object-fit:cover;transition:.8s}
+.gal div:hover img{transform:scale(1.07)}
+@media(max-width:800px){.gal{grid-template-columns:1fr 1fr;grid-auto-rows:170px}}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+@media(max-width:900px){.rev-grid{grid-template-columns:1fr}}
+.rev{background:#fff;border:1px solid #eee0cb;border-radius:20px;padding:26px}
+.rev .stars{color:var(--gold);letter-spacing:2px}
+.rev p{font-style:italic;line-height:1.7;margin:12px 0;font-size:15px;color:#4a3f3a}
+.rev b{font-size:14px}
+.rev small{color:var(--muted);font-size:12px}
+.hours-box{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;margin-top:36px}
+@media(max-width:900px){.hours-box{grid-template-columns:1fr}}
+.info-card{background:var(--dark);color:#fff;border-radius:22px;padding:32px 28px}
+.info-row{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:15px;line-height:1.6}
+.map-card{border-radius:22px;overflow:hidden;min-height:380px;position:relative;border:1px solid #eee0cb}
+.map-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+footer{background:#120d0c;color:#bfae9f;padding:50px 32px 26px;margin-top:40px}
+.foot{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.order-float{position:fixed;bottom:18px;right:18px;z-index:200;background:var(--red);color:#fff;border-radius:100px;padding:16px 24px;font-weight:800;box-shadow:0 16px 40px rgba(0,0,0,.35);cursor:pointer;border:none;font-size:14px;letter-spacing:.06em}
+.order-float:hover{background:var(--red-dark)}
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);z-index:300;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-back.show{display:flex}
+.modal{background:#fffdf7;border-radius:22px;max-width:460px;width:100%;padding:32px 28px;position:relative}
+.modal label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700;display:block;margin:14px 0 6px}
+.modal input,.modal select,.modal textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid #ddd0bd;background:#fff;font-size:15px;font-family:inherit}
+.reveal{opacity:0;transform:translateY(26px);transition:.7s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="brand" href="#top"><div class="brand-logo">C</div><div><b>CATO</b><small>PIZZERIA • MICHALOVCE</small></div></a>
+  <div class="nav-links">
+    <a href="#o-nas">O nás</a><a href="#menu">Menu</a><a href="#galeria">Galéria</a><a href="#recenzie">Recenzie</a><a href="#kontakt">Kontakt</a>
+  </div>
+  <button class="btn btn-red" onclick="openModal()">Objednať 🍕</button>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2000&auto=format&fit=crop" alt="Pizza v peci"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="badge"><i></i> Michalovce • od 1998 • pec na drevo</span>
+      <h1>Pravá pizza.<br><em>Zemplínske srdce.</em></h1>
+      <p><strong>CATO Pizzeria Michalovce</strong> — chrumkavé cesto, paradajky San Marzano, syr mozzarella a ingrediencie, ktoré milujete. Rodinná atmosféra, rýchly rozvoz po Michalovciach a okolí.</p>
+      <div class="hero-actions">
+        <button class="btn btn-red" onclick="openModal()">Objednať pizzu →</button>
+        <a href="#menu" class="btn btn-outline">Pozrieť menu</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>4.7 ★</b><span>800+ recenzií</span></div>
+        <div><b>30 min</b><span>rozvoz mesto</span></div>
+        <div><b>25+</b><span>druhov pizze</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000&auto=format&fit=crop" alt="Pizza Margherita Cato">
+      <div class="hero-card-body">
+        <div><b>Pizza Diavola</b><div style="font-size:13px;color:var(--muted)">pikantná saláma, chilli med, mozzarella</div></div>
+        <div class="price-tag">9,90 €</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+
+<section id="o-nas">
+  <div class="wrap grid2">
+    <div class="about-img">
+      <img class="main" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop" alt="Interiér pizzerie">
+      <img class="small" src="https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=600&auto=format&fit=crop" alt="Pizzaiolo pri práci">
+    </div>
+    <div>
+      <div class="kicker">Naša story</div>
+      <h2>Z Michaloviec <em>s láskou k Taliansku</em></h2>
+      <p class="lead">CATO je miesto, kde sa stretáva celá rodina — po futbale, po škole, v piatok večer. Cesto kysne 48 hodín, pec ide na 450°C a obsluha vás pozná po mene. Presne tak, ako to má byť na Zemplíne.</p>
+      <div class="feat3">
+        <div class="feat"><span>🔥</span><h4>Pec na drevo</h4><p>Pizza hotová za 90 sekúnd. Chrumkavý okraj, vláčny stred.</p></div>
+        <div class="feat"><span>🧀</span><h4>Čerstvé suroviny</h4><p>Mozzarella, bazalka, Zemplínska zelenina a mäso od lokálnych dodávateľov.</p></div>
+        <div class="feat"><span>🛵</span><h4>Rozvoz</h4><p>Michalovce + okolie do 45 minút. Horúce, alebo vraciame peniaze.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu-sec">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gold)">Menu • to najlepšie</div>
+    <h2 style="color:#fff">Čo si dáte <em style="color:var(--gold)">dnes?</em></h2>
+    <p class="lead" style="color:#cbb9a8">Všetky pizze Ø 32 cm, paradajkový základ San Marzano + mozzarella. Bezlepkové cesto +1,50 €.</p>
+    <div class="menu-tabs">
+      <button class="tab active" onclick="filterMenu('pizza',this)">🍕 Pizze</button>
+      <button class="tab" onclick="filterMenu('pasta',this)">🍝 Cestoviny</button>
+      <button class="tab" onclick="filterMenu('burger',this)">🍔 Burgre</button>
+      <button class="tab" onclick="filterMenu('dezert',this)">🍨 Dezerty & nápoje</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+    <p style="margin-top:20px;color:#8a7f78;font-size:13px">Kompletné menu s alergénmi nájdete priamo v pizzerii. Ceny platné pre rok 2026.</p>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="kicker">Galéria</div>
+    <h2>Vonia to až <em>cez fotku</em></h2>
+    <div class="gal">
+      <div><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" alt="Pizza"></div>
+      <div><img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?q=80&w=800&auto=format&fit=crop" alt="Pizza detail"></div>
+      <div><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop" alt="Pizza slice"></div>
+      <div><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=800&auto=format&fit=crop" alt="Pizza pec"></div>
+      <div><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=800&auto=format&fit=crop" alt="Cestoviny"></div>
+      <div><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop" alt="Burger"></div>
+    </div>
+  </div>
+</section>
+
+<section id="recenzie" style="background:#fff;padding-top:70px;padding-bottom:70px;border-top:1px solid #eee0cb;border-bottom:1px solid #eee0cb">
+  <div class="wrap">
+    <div class="kicker">Recenzie</div>
+    <h2>Michalovce nás <em>milujú</em></h2>
+    <div class="rev-grid">
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>„Najlepšia pizza v Michalovciach, bodka. Cesto ako v Neapole, Diavola pikantná tak akurát. Obsluha milá, aj keď je plno.“</p><b>Lenka H.</b><br><small>Michalovce • overená návšteva</small></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>„Chodíme sem celá rodina už roky. Deti milujú Quattro Formaggi, ja nedám dopustiť na cestoviny. V lete super terasa.“</p><b>Martin K.</b><br><small>Zemplínska Široká • overená návšteva</small></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>„Objednával som rozvoz do práce — do 30 minút horúca pizza, syr sa ešte ťahal. Rozvozár s úsmevom. Top.“</p><b>Jozef P.</b><br><small>Michalovce • rozvoz</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div class="kicker">Kontakt • Otváracie hodiny</div>
+    <h2>Zastavte sa <em>na kus reči</em></h2>
+    <div class="hours-box">
+      <div class="info-card">
+        <h3 class="serif" style="font-size:26px">CATO Pizzeria</h3>
+        <p style="color:#cbb9a8;font-size:14px;margin:6px 0 10px">Michalovce, Zemplín • rodinná pizzeria</p>
+        <div class="info-row"><span>📍</span><span><b>Námestie Osloboditeľov, Michalovce</b><br><span style="color:#cbb9a8">centrum — ľahko zaparkujete</span></span></div>
+        <div class="info-row"><span>📞</span><span><b>+421 905 123 456</b><br><span style="color:#cbb9a8">objednávky & rezervácie</span></span></div>
+        <div class="info-row"><span>🕒</span><span><b>Po–Ne: 10:30 – 22:00</b><br><span style="color:#cbb9a8">Pi–So do 23:00 • rozvoz do 21:30</span></span></div>
+        <button class="btn btn-red" style="width:100%;margin-top:16px" onclick="openModal()">Rezervovať stôl</button>
+      </div>
+      <div class="map-card">
+        <iframe src="https://www.google.com/maps?q=Michalovce&output=embed" loading="lazy" title="Mapa Michalovce"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div><div style="display:flex;align-items:center;gap:10px;color:#fff"><div class="brand-logo">C</div><div><b class="serif" style="font-size:20px">CATO</b><div style="font-size:10px;letter-spacing:.3em;color:var(--gold)">PIZZERIA • MICHALOVCE</div></div></div>
+    <p style="margin-top:12px;font-size:13px;max-width:320px;line-height:1.7">Pravá pizza z pece na drevo v srdci Zemplína. Tešíme sa na vás každý deň.</p></div>
+    <div style="font-size:13px;line-height:2"><b style="color:#fff">Otváracie hodiny</b><br>Po–Ne: 10:30 – 22:00<br>Pi–So: do 23:00</div>
+    <div style="font-size:13px;line-height:2"><b style="color:#fff">Rýchle linky</b><br><a href="#menu">Menu</a><br><a href="#kontakt">Rozvoz</a><br><a href="#top">Hore ↑</a></div>
+  </div>
+  <div style="max-width:1200px;margin:26px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>© 2026 CATO Pizzeria Michalovce — demo web</span><span>Vyrobené s 🍕 na Zemplíne</span></div>
+</footer>
+
+<button class="order-float" onclick="openModal()">🍕 Objednať</button>
+
+<div class="modal-back" id="modalBack" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button onclick="closeModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#8a7f78">×</button>
+    <div id="formView">
+      <h3 class="serif" style="font-size:26px">Objednávka</h3>
+      <p style="font-size:14px;color:var(--muted)">Nechajte nám číslo — zavoláme a potvrdíme do 5 minút.</p>
+      <label>Meno</label><input id="fName" placeholder="Vaše meno">
+      <label>Čo si dáte?</label><select id="fFood"><option>Pizza Diavola 9,90 €</option><option>Pizza Margherita 7,90 €</option><option>Pizza Quattro Formaggi 9,50 €</option><option>Pizza Cato Special 10,90 €</option><option>Cestoviny / Burger</option></select>
+      <label>Telefón</label><input id="fPhone" placeholder="+421 ...">
+      <button class="btn btn-red" style="width:100%;margin-top:18px" onclick="submitOrder()">Odoslať objednávku →</button>
+    </div>
+    <div id="successView" style="display:none;text-align:center;padding:20px 0">
+      <div style="font-size:48px">🍕</div>
+      <h3 class="serif">Ďakujeme!</h3>
+      <p id="successText" style="color:var(--muted);margin-top:8px"></p>
+      <button class="btn btn-dark" style="width:100%;margin-top:14px" onclick="closeModal()">Zavrieť</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+document.getElementById('marquee').innerHTML=(['Pizza z pece na drevo','◈','Michalovce','◈','Rozvoz do 45 min','◈','Terasa v lete','◈'].map(t=>`<span>${t}</span>`).join('')).repeat(4);
+
+const MENU={
+pizza:[
+ {n:'Margherita',d:'San Marzano, mozzarella fior di latte, bazalka, olivový olej',p:'7,90 €',img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=400&auto=format&fit=crop',tag:'klasika'},
+ {n:'Diavola',d:'pikantná saláma, chilli med, mozzarella, rukola',p:'9,90 €',img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=400&auto=format&fit=crop',tag:'pikantná ★'},
+ {n:'Quattro Formaggi',d:'mozzarella, gorgonzola, parmazán, údený syr',p:'9,50 €',img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=400&auto=format&fit=crop',tag:'syrová'},
+ {n:'Cato Special',d:'prosciutto, cherry paradajky, parmazán, rukola',p:'10,90 €',img:'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?q=80&w=400&auto=format&fit=crop',tag:'šéfkuchár ★'},
+ {n:'Capricciosa',d:'šunka, šampiňóny, artičoky, olivy',p:'9,20 €',img:'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=400&auto=format&fit=crop',tag:'klasika'},
+ {n:'Hawai',d:'šunka, ananás, mozzarella, smotana',p:'8,90 €',img:'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?q=80&w=400&auto=format&fit=crop',tag:'pre deti'},
+],
+pasta:[
+ {n:'Spaghetti Bolognese',d:'hovädzie ragú, parmazán, bazalka',p:'8,50 €',img:'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=400&auto=format&fit=crop',tag:'top'},
+ {n:'Penne Arrabbiata',d:'pikantná paradajková omáčka, cesnak, petržlen',p:'7,90 €',img:'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=400&auto=format&fit=crop',tag:'veggie'},
+ {n:'Tagliatelle Carbonara',d:'pancetta, pecorino, žĺtok, čierne korenie',p:'8,90 €',img:'https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=400&auto=format&fit=crop',tag:'krémová'},
+],
+burger:[
+ {n:'Cato Smash Burger',d:'hovädzie 180g, cheddar, karamelizovaná cibuľa, hranolky',p:'9,90 €',img:'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=400&auto=format&fit=crop',tag:'bestseller'},
+ {n:'Chicken Burger',d:'kurací steak, coleslaw, medovo-horčicový dresing',p:'8,90 €',img:'https://images.unsplash.com/photo-1553979459-d2229ba7433b?q=80&w=400&auto=format&fit=crop',tag:'kurací'},
+],
+dezert:[
+ {n:'Tiramisu',d:'klasické talianske, mascarpone, kakao',p:'4,50 €',img:'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=400&auto=format&fit=crop',tag:'sladké'},
+ {n:'Panna Cotta',d:'vanilka, jahodové coulis',p:'4,20 €',img:'https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=400&auto=format&fit=crop',tag:'sladké'},
+ {n:'Domáca limonáda 0,5l',d:'citrón / malina / baza',p:'2,80 €',img:'https://images.unsplash.com/photo-1437418747212-8d9709afab22?q=80&w=400&auto=format&fit=crop',tag:'osviežujúca'},
+]
+};
+function filterMenu(cat,btn){
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById('menuGrid').innerHTML=MENU[cat].map(m=>`<div class="dish"><img src="${m.img}" alt="${m.n}" loading="lazy"><div class="dish-info"><small>${m.tag}</small><h5>${m.n} <b>${m.p}</b></h5><p>${m.d}</p></div></div>`).join('');
+}
+filterMenu('pizza',document.querySelector('.tab'));
+function openModal(){document.getElementById('modalBack').classList.add('show');document.getElementById('formView').style.display='block';document.getElementById('successView').style.display='none'}
+function closeModal(){document.getElementById('modalBack').classList.remove('show')}
+function submitOrder(){
+ const n=document.getElementById('fName').value||'hosť';
+ const f=document.getElementById('fFood').value;
+ document.getElementById('formView').style.display='none';
+ document.getElementById('successView').style.display='block';
+ document.getElementById('successText').innerHTML=`<b>${n}</b>, objednávku <b>${f}</b> sme prijali.<br>Ozve sa vám naša obsluha. Dobrú chuť! 🍕`;
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
