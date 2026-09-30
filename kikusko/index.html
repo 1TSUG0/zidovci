@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choňkovský kútik – Pizza reštaurácia</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#c1272d;--dark:#1a1a1a;--cream:#fff8f0;--green:#2d6a4f;--gold:#e9b44c}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--cream);color:var(--dark);line-height:1.6}
+header{background:var(--dark);color:#fff;padding:.7rem 2rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{display:flex;align-items:center;gap:.6rem;font-size:1.5rem;font-weight:800}
+.logo img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.logo span{color:var(--gold)}
+nav a{color:#fff;text-decoration:none;margin-left:1.2rem;font-weight:600}nav a:hover{color:var(--gold)}
+.hero{background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600&q=80') center/cover;color:#fff;text-align:center;padding:6rem 1.5rem}
+.hero h1{font-size:3rem;margin-bottom:.5rem}.hero h1 span{color:var(--gold)}
+.hero p{font-size:1.2rem;max-width:600px;margin:0 auto 2rem}
+.hero-img-row{display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.hero-img-row img{width:140px;height:100px;object-fit:cover;border-radius:12px;border:3px solid #fff}
+.btn{display:inline-block;background:var(--red);color:#fff;padding:.8rem 2rem;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:#a02025;transform:scale(1.03)}
+section{max-width:1100px;margin:0 auto;padding:3rem 1.5rem}
+h2{text-align:center;font-size:2.2rem;margin-bottom:.5rem}
+.sub{text-align:center;color:#666;margin-bottom:2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:.2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px)}
+.card-img{height:200px;overflow:hidden;background:#eee}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.card-body{padding:1.2rem 1.4rem 1.5rem;flex:1;display:flex;flex-direction:column}
+.card-body h3{font-size:1.3rem;margin-bottom:.3rem}
+.ing{color:#666;font-size:.95rem;flex:1;margin-bottom:1rem}
+.row{display:flex;justify-content:space-between;align-items:center}
+.price{font-size:1.4rem;font-weight:800;color:var(--red)}
+.add{background:var(--dark);color:#fff;border:none;border-radius:20px;padding:.5rem 1.1rem;cursor:pointer;font-weight:700}
+.add:hover{background:var(--red)}
+.filter{text-align:center;margin-bottom:2rem}
+.filter button{margin:.2rem;padding:.5rem 1.2rem;border-radius:20px;border:2px solid var(--dark);background:transparent;cursor:pointer;font-weight:700}
+.filter button.active,.filter button:hover{background:var(--dark);color:#fff}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;text-align:center}
+.info div{background:#fff;padding:1.5rem 1rem;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.info img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:1rem}
+footer{background:var(--dark);color:#ccc;text-align:center;padding:2rem 1rem;margin-top:2rem}
+footer strong{color:#fff}
+#kosik{position:fixed;bottom:20px;right:20px;background:var(--dark);color:#fff;padding:1rem 1.5rem;border-radius:50px;font-weight:800;box-shadow:0 6px 25px rgba(0,0,0,.3);cursor:pointer;display:none}
+#kosik-detail{position:fixed;bottom:80px;right:20px;background:#fff;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);padding:1.5rem;width:320px;max-width:90vw;display:none}
+#kosik-detail ul{list-style:none;margin:1rem 0}#kosik-detail li{display:flex;justify-content:space-between;margin-bottom:.4rem;font-size:.95rem}
+@media(max-width:600px){.hero h1{font-size:2.1rem}header{flex-direction:column;gap:.5rem}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=200&q=80" alt="Logo Choňkovský kútik"><span>Choňkovský</span>&nbsp;kútik</div>
+<nav><a href="#menu">Menu</a><a href="#o-nas">O nás</a><a href="#kontakt">Kontakt</a></nav>
+</header>
+
+<div class="hero">
+<h1>Choňkovský <span>kútik</span></h1>
+<p>Poctivá neapolská pizza z kamennej pece. Čerstvé cesto každý deň, kvalitné suroviny, rozvoz do 45 minút.</p>
+<div class="hero-img-row">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza z pece">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Pizza plátok">
+<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400&q=80" alt="Pizza Margherita">
+</div>
+<a href="#menu" class="btn">Pozrieť menu</a>
+</div>
+
+<section id="menu">
+<h2>Naše menu</h2>
+<p class="sub">Všetky pizze Ø 32 cm • paradajkový základ a mozzarella v cene</p>
+<div class="filter">
+<button class="active" onclick="filtruj('vsetko',this)">Všetko</button>
+<button onclick="filtruj('klasika',this)">Klasika</button>
+<button onclick="filtruj('syrove',this)">Syrové</button>
+<button onclick="filtruj('pikantne',this)">Pikantné</button>
+</div>
+<div class="grid" id="pizza-grid"></div>
+</section>
+
+<section id="o-nas">
+<h2>O nás</h2>
+<p class="sub">Rodinná pizzéria v srdci Choňkovec</p>
+<div class="info">
+<div><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Kamenná pec reštaurácia"><h3>Kamenná pec</h3><p>Pečieme pri 450°C presne 90 sekúnd. Chrumkavý okraj, vláčne cesto.</p></div>
+<div><img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=600&q=80" alt="Čerstvé suroviny"><h3>Čerstvé suroviny</h3><p>San Marzano paradajky, fior di latte mozzarella, bazalka z vlastnej záhradky.</p></div>
+<div><img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=600&q=80" alt="Rozvoz pizze"><h3>Rozvoz</h3><p>Rozvážame denne 10:30 – 22:00. Pri objednávke nad 15 € doprava zdarma.</p></div>
+</div>
+</section>
+
+<section id="kontakt">
+<h2>Kontakt & otváracie hodiny</h2>
+<p class="sub">Tešíme sa na vašu návštevu</p>
+<div class="info">
+<div><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Reštaurácia Choňkovský kútik"><h3>Adresa</h3><p>Choňkovský kútik<br>Hlavná 12<br>Choňkovce</p></div>
+<div><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Interiér reštaurácie"><h3>Otváracie hodiny</h3><p>Po – Ne: 10:30 – 22:00<br>Pizza pec: do 21:30</p></div>
+<div><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="Objednávky telefonicky"><h3>Objednávky</h3><p style="font-size:1.4rem;font-weight:800">0905 123 456</p><br><a class="btn" href="tel:0905123456">Zavolať</a></div>
+</div>
+</section>
+
+<footer>
+<strong>Choňkovský kútik</strong><br>Dobrou chuť! • © 2026 Všetky práva vyhradené
+</footer>
+
+<div id="kosik" onclick="toggleKosik()">Košík: <span id="pocet">0</span> • <span id="suma">0.00</span> €</div>
+<div id="kosik-detail">
+<h3>Váš košík</h3>
+<ul id="polozky"></ul>
+<p><strong>Spolu: <span id="suma2">0.00</span> €</strong></p>
+<button class="btn" style="width:100%;margin-top:.5rem" onclick="objednat()">Objednať telefonicky</button>
+</div>
+
+<script>
+const pizze=[
+{n:"Margherita",s:"paradajka, mozzarella, bazalka, olivový olej",c:"6.90",img:"https://images.pexels.com/photos/14590497/pexels-photo-14590497.jpeg?auto=compress&cs=tinysrgb&w=600",k:"klasika"},
+{n:"Prosciutto",s:"paradajka, mozzarella, prosciutto, rukola",c:"8.90",img:"https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=600",k:"klasika"},
+{n:"Capricciosa",s:"paradajka, mozzarella, šunka, šampiňóny, olivy, artičoky",c:"8.50",img:"https://images.pexels.com/photos/15878786/pexels-photo-15878786.jpeg?auto=compress&cs=tinysrgb&w=600",k:"klasika"},
+{n:"Quattro Formaggi",s:"mozzarella, gorgonzola, parmezán, eidam, smotana",c:"9.50",img:"https://images.pexels.com/photos/27692665/pexels-photo-27692665.jpeg?auto=compress&cs=tinysrgb&w=600",k:"syrove"},
+{n:"Syrová bomba",s:"paradajka, 3x mozzarella, čedar, parmezán",c:"9.90",img:"https://images.pexels.com/photos/20483147/pexels-photo-20483147.jpeg?auto=compress&cs=tinysrgb&w=600",k:"syrove"},
+{n:"Diavola",s:"paradajka, mozzarella, pikantná saláma, chilli, cibuľa",c:"9.20",img:"https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=600",k:"pikantne"},
+{n:"Inferno",s:"paradajka, mozzarella, jalapeños, pikantná saláma, chilli olej",c:"9.80",img:"https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg?auto=compress&cs=tinysrgb&w=600",k:"pikantne"},
+{n:"Hawai",s:"paradajka, mozzarella, šunka, ananás",c:"8.20",img:"https://images.pexels.com/photos/32611520/pexels-photo-32611520.jpeg?auto=compress&cs=tinysrgb&w=600",k:"klasika"},
+{n:"Vegetariana",s:"paradajka, mozzarella, paprika, cuketa, šampiňóny, olivy",c:"8.70",img:"https://images.pexels.com/photos/16203829/pexels-photo-16203829.jpeg?auto=compress&cs=tinysrgb&w=600",k:"klasika"},
+];
+let kosik=[];
+function render(kat="vsetko"){
+const g=document.getElementById("pizza-grid");g.innerHTML="";
+pizze.filter(p=>kat==="vsetko"||p.k===kat).forEach((p,i)=>{
+g.innerHTML+=`<div class="card"><div class="card-img"><img src="${p.img}" alt="${p.n}" loading="lazy"></div><div class="card-body"><h3>${p.n}</h3><p class="ing">${p.s}</p><div class="row"><span class="price">${p.c} €</span><button class="add" onclick="pridaj('${p.n}',${p.c})">+ Pridať</button></div></div></div>`;
+});
+}
+function filtruj(kat,btn){document.querySelectorAll(".filter button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");render(kat);}
+function pridaj(n,c){kosik.push({n,c});aktualizuj();}
+function aktualizuj(){
+const s=kosik.reduce((a,b)=>a+b.c,0);
+document.getElementById("pocet").textContent=kosik.length;
+document.getElementById("suma").textContent=s.toFixed(2);
+document.getElementById("suma2").textContent=s.toFixed(2);
+document.getElementById("kosik").style.display=kosik.length?"block":"none";
+document.getElementById("polozky").innerHTML=kosik.map(k=>`<li><span>${k.n}</span><b>${k.c.toFixed(2)} €</b></li>`).join("")||"<li>Košík je prázdny</li>";
+}
+function toggleKosik(){const d=document.getElementById("kosik-detail");d.style.display=d.style.display==="block"?"none":"block";}
+function objednat(){if(!kosik.length)return alert("Košík je prázdny");alert("Vaša objednávka ("+kosik.length+" ks, "+document.getElementById("suma").textContent+" €) bola prijatá! Zavolajte nám na 0905 123 456 pre potvrdenie. Ďakujeme!");}
+render();
+</script>
+</body>
+</html>
